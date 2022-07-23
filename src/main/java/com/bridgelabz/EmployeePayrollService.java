@@ -7,6 +7,7 @@ import java.sql.SQLException;
 public class EmployeePayrollService {
     public static void main(String[] args) throws SQLException {
         System.out.println("Status of connecting database to java code: ");
+
         String jdbcURL = "jdbc:mysql://localhost:3306/payroll_service";
         String userName = "root";
         String password = "akanksha@99";
@@ -16,7 +17,7 @@ public class EmployeePayrollService {
             System.out.println("Driver loaded!");
             connection = DriverManager.getConnection(jdbcURL, userName, password);
             System.out.println("Connection done!!");
-        } catch (Exception e) {
+        } catch (Exception  e) {
             e.printStackTrace();
         } finally {
             connection.close();
