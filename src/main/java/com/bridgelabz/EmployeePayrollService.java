@@ -15,12 +15,12 @@ public class EmployeePayrollService {
             System.out.println("Driver loaded!");
             connection = DriverManager.getConnection(jdbcURL, userName, password);
             System.out.println("Connection done!!");
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM employee_payroll WHERE name = ?");
-            preparedStatement.setString(1, "Akanksha");
-            ResultSet resultSet = preparedStatement.executeQuery();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT SUM(BasicPay), AVG(basicPay), MAX(basicPay), MIN(basicPay) FROM employee_payroll WHERE gender = 'F' GROUP BY gender ");
             while (resultSet.next()) {
-                System.out.println(resultSet.getInt("id") + " | " + resultSet.getString("name") + " | " + resultSet.getString("gender") + " | " + resultSet.getString("phone_number") + " | " + resultSet.getString("address") + " | " + resultSet.getString("department") + " | " + resultSet.getDouble("basicPay") + " | " + resultSet.getDouble("deductions") + " | " + resultSet.getDouble("taxablePay") + " | " + resultSet.getDouble("netPay") + " | " + resultSet.getDouble("incomeTax") + " | " + resultSet.getDate("start"));
+                System.out.println("Sum of all basic salary " + resultSet.getDouble("SUM(BasicPay)") + "\n" + "Average of all basic salary " + resultSet.getDouble("AVG(BasicPay)") + "\n" + "Min of all basic salary " + resultSet.getDouble("MIN(BasicPay)") + "\n" + "MAX of all basic salary " + resultSet.getDouble("MAX(BasicPay)"));
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
