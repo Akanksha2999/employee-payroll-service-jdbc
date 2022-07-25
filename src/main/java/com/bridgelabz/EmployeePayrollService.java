@@ -5,7 +5,6 @@ import java.sql.*;
 public class EmployeePayrollService {
     public static void main(String[] args) throws SQLException {
         System.out.println("Status of connecting database to java code: ");
-
         String jdbcURL = "jdbc:mysql://localhost:3306/payroll_service";
         String userName = "root";
         String password = "akanksha@99";
